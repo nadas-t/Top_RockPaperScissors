@@ -21,7 +21,8 @@ const getHumanChoice=()=>{
 }
 // console.log(getHumanChoice())
 
-
+let humanScore=0;
+let computerScore=0;
 
 const playRound=(humanChoice,computerChoice)=>{
     humanChoice=humanChoice.toLowerCase();
@@ -66,11 +67,14 @@ const playRound=(humanChoice,computerChoice)=>{
             console.log(`It's a draw!Both got ${humanChoice}`)
         }
     }
+    console.log(`Score:\n You:${humanScore}\n Computer:${computerScore}`)
 
 }
 
 const playGame=()=>{
     for(let i=0;i<5;i++){
+        console.log("Round "+i)
+
         playRound(getHumanChoice(),getComputerChoice());
     }
     if (humanScore>computerScore){
@@ -82,6 +86,5 @@ const playGame=()=>{
     }
 }
 
-let humanScore=0;
-let computerScore=0;
+
 playGame()

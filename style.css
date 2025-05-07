@@ -1,0 +1,33 @@
+.btsDiv{
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    margin-top: 20px;
+}
+
+button{
+    height: 40px;
+    width: 80px;
+}
+
+.scoresAll{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100px;
+}
+.scores {
+    display: flex;
+    /* flex-direction: column; */
+    gap: 2rem;
+    /* align-items: center; */
+    justify-content: center;
+    margin-top: 20px;
+  }
+  
+  .score {
+    display: flex;
+    gap: 0.5rem;
+  }
+  

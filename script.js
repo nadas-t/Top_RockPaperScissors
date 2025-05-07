@@ -27,64 +27,82 @@ let computerScore=0;
 const playRound=(humanChoice,computerChoice)=>{
     humanChoice=humanChoice.toLowerCase();
     computerChoice=computerChoice.toLowerCase();
+    let answer;
 
     if (humanChoice=="paper"){
         if(computerChoice=="paper"){
-            console.log(`It's a draw!Both got ${humanChoice}`)
+            answer=`It's a draw!Both got ${humanChoice}`
         }
         else if(computerChoice=="rock"){
-            console.log(`You win!${humanChoice} beats ${computerChoice}`)
+            answer=`You win!${humanChoice} beats ${computerChoice}`
             humanScore+=1;
         }
         else{
-            console.log(`You lose!${computerChoice} beats ${humanChoice}!`)
+            answer=`You lose!${computerChoice} beats ${humanChoice}!`
             computerScore+=1
         }
     }
     else if (humanChoice=="rock"){
         if(computerChoice=="paper"){
-            console.log(`You lose!${computerChoice} beats ${humanChoice}!`)
+            answer=`You lose!${computerChoice} beats ${humanChoice}!`
             computerScore+=1;
         }
         else if(computerChoice=="rock"){
-            console.log(`It's a draw!Both got ${humanChoice}`)
+            answer=```It's a draw!Both got ${humanChoice}`
         }
         else{
-            console.log(`You win!${humanChoice} beats ${computerChoice}`)
+            answer=`You win!${humanChoice} beats ${computerChoice}`
             humanScore+=1;
         }
     }
     else{
         if(computerChoice=="paper"){
-            console.log(`You win!${humanChoice} beats ${computerChoice}`)
+            answer=`You win!${humanChoice} beats ${computerChoice}`
             humanScore+=1;
         }
         else if(computerChoice=="rock"){
-            console.log(`You lose!${computerChoice} beats ${humanChoice}!`)
+            answer=`You lose!${computerChoice} beats ${humanChoice}!`
             computerScore+=1;
         }
         else{
-            console.log(`It's a draw!Both got ${humanChoice}`)
+            answer=`It's a draw!Both got ${humanChoice}`
         }
     }
     console.log(`Score:\n You:${humanScore}\n Computer:${computerScore}`)
+    const jshumanScore=document.querySelector(".humanPoints")
+    const jscomputerScore=document.querySelector(".computerPoints")
+    const jsAnswer=document.querySelector(".jsAnswer")
 
+    jshumanScore.textContent=humanScore
+    jscomputerScore.textContent=computerScore
+    jsAnswer.textContent=answer
 }
 
-const playGame=()=>{
-    for(let i=0;i<5;i++){
-        console.log("Round "+i)
-
-        playRound(getHumanChoice(),getComputerChoice());
-    }
-    if (humanScore>computerScore){
-        console.log(`human is the winner with ${humanScore} points`)
-    }
-    else{
-        console.log(`computer is the winner with ${computerScore} points`)
-
+const playGame=(humanChoice)=>{
+    // for(let i=0;i<5;i++){
+        // console.log("Round "+i)
+    // }
+    playRound(humanChoice,getComputerChoice());
+    const jsAnswer=document.querySelector(".jsAnswer")
+    let answer;
+    if (humanScore>=5 || computerScore>=5){
+        if (humanScore>=5){
+            answer=`human is the winner with ${humanScore} points`
+        }
+        else{
+            answer=`computer is the winner with ${computerScore} points`
+        }
+        jsAnswer.textContent=answer
+        humanScore=0
+        computerScore=0
     }
 }
 
+const buttons=document.querySelectorAll("button")
 
-playGame()
+buttons.forEach((button)=>{
+    button.addEventListener("click",(e)=>{
+        playGame(e.target.className)
+    })
+})
+
